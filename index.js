@@ -2,7 +2,7 @@ import express from 'express';
 import mysql from 'mysql';
 import cors from 'cors';
 
-//controllers
+//controllers 
 import { obtenerProductos,agregarProducto,actualizarProducto,eliminarProducto } from './controllers/productosController.js';
 
 import { obtenerClientes,agregarCliente,actualizarCliente,eliminarCliente } from './controllers/clienteController.js';
@@ -10,6 +10,14 @@ import { obtenerClientes,agregarCliente,actualizarCliente,eliminarCliente } from
 import { obtenerVehiculos,agregarVehiculo,actualizarVehiculo,eliminarVehiculo } from './controllers/vehiculoController.js';
 
 import { obtenerEmpleados, agregarEmpleado, actualizarEmpleado, eliminarEmpleado} from './controllers/empleadoController.js';
+
+import { sp_vw_ventas_productos, sp_vw_servicios_realizados, sp_vw_producto_no_vendidos, sp_vw_Clientes_Frecuentes } from './controllers/viewsController.js';
+
+import { totalProductos, totalServicios } from './controllers/totalVentas.js';
+
+import { getCliente, getProducto } from './controllers/busquedasController.js';
+
+
 
 
 
@@ -96,12 +104,26 @@ app.put("/updateemployee", actualizarEmpleado);
 app.delete("/deleteemployee/:cedula", eliminarEmpleado);
 
 
-// ** COMPRAS ** //
+// ** VIEWS ** //
+// obtener registro ventas productos
+app.get("/ventasproductos", sp_vw_ventas_productos);
+// obtenemos registro servicios realizados
+app.get("/serviciosrealizados", sp_vw_servicios_realizados);
+//obtener productos no vendidos
+app.get("/productosnovendidos", sp_vw_producto_no_vendidos);
+//obtener clientes frecuentes
+app.get("/clientesfrecuentes", sp_vw_Clientes_Frecuentes);
 
 
 
+// ** VALORES TOTALES ** // 
+app.get("/totalproductos", totalProductos);
+app.get("/totalservicios",totalServicios);
 
 
+//** BUSQUEDAS **/
+app.get("/getclient/:cedula", getCliente);
+app.get("/getproducto/:id", getProducto);
 
 
 app.listen(3001, () => {

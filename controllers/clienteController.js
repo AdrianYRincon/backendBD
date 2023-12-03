@@ -49,6 +49,7 @@ export const actualizarCliente = (req,res)=>{
     }
   })
 };
+
 export const eliminarCliente = (req,res)=>{
 
   const cedula = req.params.cedula;
