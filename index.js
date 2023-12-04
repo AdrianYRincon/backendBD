@@ -11,6 +11,10 @@ import { obtenerVehiculos,agregarVehiculo,actualizarVehiculo,eliminarVehiculo } 
 
 import { obtenerEmpleados, agregarEmpleado, actualizarEmpleado, eliminarEmpleado} from './controllers/empleadoController.js';
 
+import { obtenerDetallesFactura,agregarDetallesFactura,actualizarDetallesFactura,eliminarDetallesFactura } from './controllers/ventasController.js';
+
+import { obtenerDetallesServicio, agregarDetallesServicio, actualizarDetallesServicio, eliminarDetallesServicio } from './controllers/serviciosController.js';
+
 import { sp_vw_ventas_productos, sp_vw_servicios_realizados, sp_vw_producto_no_vendidos, sp_vw_Clientes_Frecuentes } from './controllers/viewsController.js';
 
 import { totalProductos, totalServicios } from './controllers/totalVentas.js';
@@ -102,6 +106,34 @@ app.put("/updateemployee", actualizarEmpleado);
 
 //Eliminar un empleado
 app.delete("/deleteemployee/:cedula", eliminarEmpleado);
+
+
+// ** VENTAS PRODUCTOS ** //
+//obtener ventas de la BD
+app.get("/ventas", obtenerDetallesFactura);
+
+//insertar un nueva venta
+app.post("/addventa", agregarDetallesFactura);
+
+//actualizar una venta
+app.put("/updateventa", actualizarDetallesFactura);
+
+//Eliminar una venta
+app.delete("/deleteventa/:id", eliminarDetallesFactura);
+
+
+// ** SERVICIOS REALIZADOS **// 
+//obtener servicios realizados de la BD
+app.get("/servicios",obtenerDetallesServicio );
+
+//insertar un nuevo servicio
+app.post("/addservice", agregarDetallesServicio);
+
+//actualizar un servicio
+app.put("/updateservice", actualizarDetallesServicio);
+
+//Eliminar un servicios
+app.delete("/deleteservice/:id", eliminarDetallesServicio);
 
 
 // ** VIEWS ** //
